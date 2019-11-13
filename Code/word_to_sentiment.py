@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -53,7 +53,7 @@ for city in city_list:
 
 # #### change reviews to sentences, and seperate senteences with transition conjuctions (but,however, ... ,etc.)
 
-# In[11]:
+# In[7]:
 
 
 def text_to_sentence(text_raw,transition):
@@ -74,7 +74,7 @@ def text_to_sentence(text_raw,transition):
     return(text_final)
 
 
-# In[12]:
+# In[8]:
 
 
 transition = ["but","however","despite","nevertheless","even if","even though","yet"]
@@ -94,7 +94,7 @@ text_Pittsburgh = text_to_sentence(text_Pittsburgh_raw,transition)
 # 3. function word_contain_pos show whether word and positive adj. contains 
 # 4. function word_contain_neg show whether word and negative adj. contains 
 
-# In[121]:
+# In[9]:
 
 
 test_word = "burger"
@@ -121,7 +121,7 @@ neg_words = ["angry","annoying","anxious","awful","bad","boring","broken","cold"
              "unpleasant","unsatisfactory","unwanted","unwelcome","upset","worthless"]
 
 
-# In[122]:
+# In[10]:
 
 
 # return 1 if contain word else 0
@@ -134,7 +134,7 @@ word_contain_pos = lambda word,pos,text: 1 if any([judge_exist(pos_word,str.lowe
 word_contain_neg = lambda word,neg,text: 1 if any([judge_exist(neg_word,str.lower(text)) & (word in text) for neg_word in neg]) else 0
 
 
-# In[8]:
+# In[11]:
 
 
 food_list = ["fries", "chips", "onion rings", "nachos", "wings", "burger",
@@ -153,7 +153,7 @@ word_list = food_list + drink_list + service_list+atomsphere_list
 
 # #### Create DataFrame for each city
 
-# In[24]:
+# In[12]:
 
 
 for city in city_list:
@@ -163,7 +163,7 @@ for city in city_list:
 
 # #### Add columns for all variables to be used in the count
 
-# In[25]:
+# In[13]:
 
 
 for city in city_list:
@@ -195,7 +195,7 @@ for city in city_list:
 # * &emsp word_pos: an indicator of whether the word and positive adj. is in the sentence<br>
 # * emsp word_neg: an indicator of whether the word and negative adj. is in the sentence<br>
 
-# In[26]:
+# In[14]:
 
 
 for city in city_list:
@@ -203,7 +203,7 @@ for city in city_list:
     exec('text_{}_df.to_csv(\"text_{}.csv\")'.format(city_new,city_new))
 
 
-# In[28]:
+# In[15]:
 
 
 for city in city_list:
