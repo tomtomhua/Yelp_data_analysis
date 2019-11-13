@@ -91,11 +91,10 @@ for city in city_list:
 
 # In[7]:
 
-
-word_list_all = list(text_Madison_df.columns[3:])
-columns_list = ['review_id','review_stars','business_id']+word_list_all
 for city in city_list:
     city_new = city.replace(" ","")
+    exec('word_list_all = list(text_{}_df.columns[3:])'.format(city_new))
+    columns_list = ['review_id','review_stars','business_id']+word_list_all
     text_list = list()
     text_array = np.array(text_list)
     exec('review_id_list = pd.unique(text_{}_df.id)'.format(city_new))
