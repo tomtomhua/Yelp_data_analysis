@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -24,7 +24,7 @@ total_data = pd.read_csv('reivew_business_user.csv')
 
 
 
-# In[5]:
+# In[3]:
 
 
 city_list = ["Madison","Las Vegas","Phoenix","Charlotte","Pittsburgh"]
@@ -32,7 +32,7 @@ city_list = ["Madison","Las Vegas","Phoenix","Charlotte","Pittsburgh"]
 
 
 
-# In[121]:
+# In[4]:
 
 
 test_word = "burger"
@@ -60,7 +60,7 @@ neg_words = ["angry","annoying","anxious","awful","bad","boring","broken","cold"
 
 
 
-# In[8]:
+# In[5]:
 
 
 food_list = ["fries", "chips", "onion rings", "nachos", "wings", "burger",
@@ -79,7 +79,7 @@ word_list = food_list + drink_list + service_list + atomsphere_list
 
 
 
-# In[ ]:
+# In[6]:
 
 
 for city in city_list:
@@ -89,7 +89,7 @@ for city in city_list:
 
 
 
-# In[48]:
+# In[7]:
 
 
 word_list_all = list(text_Madison_df.columns[3:])
@@ -119,7 +119,7 @@ for city in city_list:
 
 
 
-# In[ ]:
+# In[8]:
 
 
 for city in city_list:
@@ -184,7 +184,7 @@ for city in city_list:
 # #### Converge reviews back into business
 
 
-# In[4]:
+# In[9]:
 
 
 word_list_all = list(sentiment_stars_Madison.columns[4:])
@@ -194,7 +194,7 @@ for word in word_list_all:
 columns_list = ['business_id','avg_review_stars','review_count']+word_count_list
 
 
-# In[5]:
+# In[10]:
 #
 #
 #text_list = list()
@@ -213,7 +213,7 @@ columns_list = ['business_id','avg_review_stars','review_count']+word_count_list
 #business_count_Madison.to_csv("business_count_Madison.csv")
 #
 
-# In[ ]:
+# In[11]:
 
 
 for city in city_list:
