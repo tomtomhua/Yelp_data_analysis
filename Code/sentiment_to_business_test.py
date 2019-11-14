@@ -177,7 +177,7 @@ for city in city_list:
            'enrich_pos_p_value':city_enrich_pos_p_value,
            'enrich_neg_p_value':city_enrich_neg_p_value}
     exec('{}_test_df = pd.DataFrame(data)'.format(city_new))
-    exec('{}_test_df.to_csv(\'{}_test_df.csv\')'.foramt(city_new,city_new))     
+    exec('{}_test_df.to_csv(\"{}_test_df.csv\")'.foramt(city_new,city_new))     
 
 
 # #### Converge reviews back into business
@@ -235,5 +235,5 @@ for city in city_list:
     text_list_reshaped = np.array(text_list).reshape(int(len(text_list)/3),3)
     text_combined = np.c_[text_list_reshaped,text_array_reshaped]
     exec('business_count_{} = pd.DataFrame(text_combined, columns=columns_list)'.format(city_new))
-    exec('business_count_{}.to_csv("business_count_{}.csv)'.format(city_new,city_new))
+    exec('business_count_{}.to_csv(\"business_count_{}.csv\")'.format(city_new,city_new))
 
