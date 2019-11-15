@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# author: Xiaoxiang Hua
 
-# In[1]:
-
-
+# loading packages
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,46 +15,20 @@ import re
 import nltk
 nltk.download('punkt')
 
-# In[2]:
-
-
+# input merged data
 total_data = pd.read_csv('reivew_business_user.csv')
 
-
-# In[3]:
-
-
-#total_data.review_id
-
-
-# In[4]:
-
-
-# text_Madison_raw = total_data[total_data.city == "Madison"][["text","review_id"]]
-# text_Madison_raw.head(5)
-
-
-# In[5]:
-
-
+# form the city need to be used
 city_list = ["Madison","Las Vegas","Phoenix","Charlotte","Pittsburgh"]
 
-
-# In[6]:
-
-
+# grap the city-related data
 for city in city_list:
     city_new = city.replace(" ","")
     exec('text_{}_filter = total_data[total_data.city =="{}"][[\'text\',\'review_id\']]'.format(city_new,city))
     exec('text_{}_raw = [tuple(x) for x in text_{}_filter.values]'
         .format(city_new,city_new))
 
-
-# #### change reviews to sentences, and seperate senteences with transition conjuctions (but,however, ... ,etc.)
-
-# In[7]:
-
-
+# change reviews to sentences, and seperate senteences with transition conjuctions (but,however, ... ,etc.)
 def text_to_sentence(text_raw,transition):
     
     def flat_list_in_element(list_of_tuples):
@@ -73,10 +46,7 @@ def text_to_sentence(text_raw,transition):
     text_final = flat_list_in_element(text_trans_split)
     return(text_final)
 
-
-# In[8]:
-
-
+# transition conjuctions
 transition = ["but","however","despite","nevertheless","even if","even though","yet"]
 
 text_Madison = text_to_sentence(text_Madison_raw,transition)
@@ -86,7 +56,7 @@ text_Charlotte = text_to_sentence(text_Charlotte_raw,transition)
 text_Pittsburgh = text_to_sentence(text_Pittsburgh_raw,transition)
 
 
-# #### create a function, list all reviews that contains the positive & negative information
+# create a function, list all reviews that contains the positive & negative information
 # 
 # input: list of tuples('text','id')
 # 1. from list of tuples to dataframe
@@ -94,10 +64,6 @@ text_Pittsburgh = text_to_sentence(text_Pittsburgh_raw,transition)
 # 3. function word_contain_pos show whether word and positive adj. contains 
 # 4. function word_contain_neg show whether word and negative adj. contains 
 
-# In[9]:
-
-
-test_word = "burger"
 pos_words = ["advanced","amazing","amusing","awesome","balanced","bright",
              "calm","cheerful","classic","confort","considerate","delicious",
              "enjoyable","excellent","extraordinary","fancy","favourite","fine","fluent",
@@ -121,8 +87,6 @@ neg_words = ["angry","annoying","anxious","awful","bad","boring","broken","cold"
              "unpleasant","unsatisfactory","unwanted","unwelcome","upset","worthless"]
 
 
-# In[10]:
-
 
 # return 1 if contain word else 0
 word_contain = lambda word,text: 1 if word in text else 0
@@ -134,7 +98,7 @@ word_contain_pos = lambda word,pos,text: 1 if any([judge_exist(pos_word,str.lowe
 word_contain_neg = lambda word,neg,text: 1 if any([judge_exist(neg_word,str.lower(text)) & (word in text) for neg_word in neg]) else 0
 
 
-# In[11]:
+
 
 
 food_list = ["fries", "chips", "onion rings", "nachos", "wings", "burger",
@@ -153,17 +117,14 @@ word_list = food_list + drink_list + service_list+atomsphere_list
 
 # #### Create DataFrame for each city
 
-# In[12]:
-
-
 for city in city_list:
     city_new = city.replace(" ","")
     exec('text_{}_df = pd.DataFrame(text_{},columns=[\"text\",\"id\"])'.format(city_new,city_new))
 
 
-# #### Add columns for all variables to be used in the count
+# #### Add columns for all variables to be used in the count,list all reviews that contains the positive & negative information
 
-# In[13]:
+
 
 
 for city in city_list:
@@ -192,11 +153,8 @@ for city in city_list:
 # ID: the review ID<br>
 # for word in word_list:<br>
 # * word: an indicator of whether the word is in the sentence<br>
-# * &emsp word_pos: an indicator of whether the word and positive adj. is in the sentence<br>
-# * emsp word_neg: an indicator of whether the word and negative adj. is in the sentence<br>
-
-# In[14]:
-
+# * word_pos: an indicator of whether the word and positive adj. is in the sentence<br>
+# * word_neg: an indicator of whether the word and negative adj. is in the sentence<br>
 
 for city in city_list:
     city_new = city.replace(" ","")
