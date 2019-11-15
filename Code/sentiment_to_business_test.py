@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,14 +14,11 @@ from scipy import stats
 from scipy.stats import chi2_contingency
 
 
-# In[2]:
 
-
+# Read the total merged data, which is too big we can't put it in git, its link is in  data file fold's readme. 
 total_data = pd.read_csv('reivew_business_user.csv')
 
 
-
-# In[3]:
 
 
 city_list = ["Madison","Las Vegas","Phoenix","Charlotte","Pittsburgh"]
@@ -32,9 +26,7 @@ city_list = ["Madison","Las Vegas","Phoenix","Charlotte","Pittsburgh"]
 
 
 
-# In[4]:
-
-
+# Create word list that we used to draw information from sentences.
 test_word = "burger"
 pos_words = ["advanced","amazing","amusing","awesome","balanced","bright",
              "calm","cheerful","classic","confort","considerate","delicious",
@@ -60,7 +52,6 @@ neg_words = ["angry","annoying","anxious","awful","bad","boring","broken","cold"
 
 
 
-# In[5]:
 
 
 food_list = ["fries", "chips", "onion rings", "nachos", "wings", "burger",
@@ -79,7 +70,7 @@ word_list = food_list + drink_list + service_list + atomsphere_list
 
 
 
-# In[6]:
+# read the data that convert the sentences into sentiments.
 
 
 for city in city_list:
@@ -89,7 +80,8 @@ for city in city_list:
 
 
 
-# In[7]:
+# Merge senteces back into reviews according to review ids. 
+
 
 for city in city_list:
     city_new = city.replace(" ","")
@@ -112,13 +104,10 @@ for city in city_list:
     exec('sentiment_stars_{}.to_csv("sentiment_stars_{}.csv")'.format(city_new,city_new))
 
 
-# #### Using t-test, chisq test and fisher's exact test to test words in word list whether they have significant influence on review_stars.
+# #### Using t-test, chisq test to test words in word list whether they have significant influence on review_stars.
 
-
-
-
-
-# In[8]:
+# #### Using fisher's exact test to do the enrichment test, thus, we can find how significant it is to improve (decrease) review star when a word 
+# #### is positively (negatively) mentioned. 
 
 
 for city in city_list:
@@ -183,8 +172,6 @@ for city in city_list:
 # #### Converge reviews back into business
 
 
-# In[9]:
-
 
 word_list_all = list(sentiment_stars_Madison.columns[4:])
 word_count_list = list()
@@ -193,7 +180,6 @@ for word in word_list_all:
 columns_list = ['business_id','avg_review_stars','review_count']+word_count_list
 
 
-# In[10]:
 #
 #
 #text_list = list()
@@ -211,8 +197,6 @@ columns_list = ['business_id','avg_review_stars','review_count']+word_count_list
 #business_count_Madison = pd.DataFrame(text_combined, columns=columns_list )
 #business_count_Madison.to_csv("business_count_Madison.csv")
 #
-
-# In[11]:
 
 
 for city in city_list:
