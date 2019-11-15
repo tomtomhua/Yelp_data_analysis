@@ -21,14 +21,14 @@ total_data = pd.read_csv('reivew_business_user.csv')
 # form the city need to be used
 city_list = ["Madison","Las Vegas","Phoenix","Charlotte","Pittsburgh"]
 
-# grap the city-related data
+# #### Grap the city-related data
 for city in city_list:
     city_new = city.replace(" ","")
     exec('text_{}_filter = total_data[total_data.city =="{}"][[\'text\',\'review_id\']]'.format(city_new,city))
     exec('text_{}_raw = [tuple(x) for x in text_{}_filter.values]'
         .format(city_new,city_new))
 
-# change reviews to sentences, and seperate senteences with transition conjuctions (but,however, ... ,etc.)
+# #### Split reviews to sentences, and seperate sentences with transition conjuctions (but,however, ... ,etc.)
 def text_to_sentence(text_raw,transition):
     
     def flat_list_in_element(list_of_tuples):
@@ -56,7 +56,7 @@ text_Charlotte = text_to_sentence(text_Charlotte_raw,transition)
 text_Pittsburgh = text_to_sentence(text_Pittsburgh_raw,transition)
 
 
-# create a function, list all reviews that contains the positive & negative information
+# #### Create a function, list all reviews that contains the positive & negative information
 # 
 # input: list of tuples('text','id')
 # 1. from list of tuples to dataframe
@@ -64,6 +64,7 @@ text_Pittsburgh = text_to_sentence(text_Pittsburgh_raw,transition)
 # 3. function word_contain_pos show whether word and positive adj. contains 
 # 4. function word_contain_neg show whether word and negative adj. contains 
 
+# a list of positive and negative words
 pos_words = ["advanced","amazing","amusing","awesome","balanced","bright",
              "calm","cheerful","classic","confort","considerate","delicious",
              "enjoyable","excellent","extraordinary","fancy","favourite","fine","fluent",
@@ -100,7 +101,7 @@ word_contain_neg = lambda word,neg,text: 1 if any([judge_exist(neg_word,str.lowe
 
 
 
-
+# All the key words need to be considered
 food_list = ["fries", "chips", "onion rings", "nachos", "wings", "burger",
               "monzarella stick", "quesadillas", "cheese", "sandwitch",
               "pizza", "taco", "popcorn", "bacon", "slider", "fried", "shrimp",
@@ -124,9 +125,6 @@ for city in city_list:
 
 # #### Add columns for all variables to be used in the count,list all reviews that contains the positive & negative information
 
-
-
-
 for city in city_list:
     city_new = city.replace(" ","")
     for word in word_list:
@@ -148,7 +146,8 @@ for city in city_list:
 
 # #### Output the result into csv
 # 
-# Output format:<br>
+# Output format:csv <br>
+# Columns
 # text: the analyzed sentence<br>
 # ID: the review ID<br>
 # for word in word_list:<br>
@@ -160,10 +159,7 @@ for city in city_list:
     city_new = city.replace(" ","")
     exec('text_{}_df.to_csv(\"text_{}.csv\")'.format(city_new,city_new))
 
-
-# In[15]:
-
-
+# delete the used variables
 for city in city_list:
     city_new = city.replace(" ","")
     exec('del text_{}_df'.format(city_new,city_new))
