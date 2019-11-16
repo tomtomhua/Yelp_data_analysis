@@ -7,13 +7,13 @@ Xiaoxiang Hua xhua24@wisc.edu
 
 Yijie Liu liu854@wisc.edu
 
-YI-HSUAN TSAI 
+YI-HSUAN TSAI tsai45@wisc.edu
 
 Jiangting Wang jwang2283@wisc.edu
 
 ******
 
-This is a project about how to give bar owner's advices in order to improve their ratings, and give customers a brief guide information 
+This is a project about how to give bar owners advices in order to improve their ratings, and give customers a brief guide information 
 about bars based on yelp data.  
 
 #### Codes folder:
@@ -23,4 +23,6 @@ about bars based on yelp data.
 
 
 #### Data folder:
+
+#### R Shiny App: https://manu200921.shinyapps.io/yelp/
 
