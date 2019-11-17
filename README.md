@@ -9,7 +9,7 @@ Yijie Liu liu854@wisc.edu
 
 YI-HSUAN TSAI tsai45@wisc.edu
 
-Jiangting Wang jwang2283@wisc.edu
+Jiantong Wang jwang2283@wisc.edu
 
 ******
 
