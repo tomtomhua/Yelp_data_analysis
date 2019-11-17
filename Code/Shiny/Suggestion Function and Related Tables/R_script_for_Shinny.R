@@ -36,7 +36,7 @@ Phoen_Negative_Customer_Suggestion_Ref <- read.csv("Phoen_Negative_Customer_Sugg
 load("word.list.Madison.Rdata")
 load("word.list.Charlotte.Rdata")
 load("word.list.Phoenix.Rdata")
-load("word.list.Pittsburg.Rdata")
+load("word.list.Pittsburgh.Rdata")
 #Fucntion Define
 
 ############### Customer Suggestion Fuction
@@ -50,13 +50,13 @@ customer_sug_function <- function(ID,city){
     city.Negative_Customer_Suggestion_Ref <- Mad_Negative_Customer_Suggestion_Ref
     loop_range <- length(word.list.Madison)
   }
-  if(city == "Pittsburg"){
+  if(city == "Pittsburgh"){
     city.busi <- Pitt.busi
     city.busi.filter30 <- Pitt.busi.filter30
     city.busi.filter_below30 <- Pitt.busi.filter_below30
     city.Positive_Customer_Suggestion_Ref <- Pitt_Positive_Customer_Suggestion_Ref
     city.Negative_Customer_Suggestion_Ref <- Pitt_Negative_Customer_Suggestion_Ref
-    loop_range <- length(word.list.Pittsburg)
+    loop_range <- length(word.list.Pittsburgh)
   }
   if(city == "Phoenix"){
     city.busi <- Phoen.busi
@@ -282,7 +282,7 @@ business_sug_function <- function(ID, city = "Madison"){
 
     }
   }
-  if(city == "Pittsburg"){
+  if(city == "Pittsburgh"){
     busi_words_list <- colnames(Pitt.busi.filter30)[4:49]
     busi_words_list[c(9,13,15,18,44)] <- c("cheese food","bacon food","fried food","dipping source","sandwich")
     if(Pitt.busi[which(Pitt.busi$business_id == ID),3] >= 30){
