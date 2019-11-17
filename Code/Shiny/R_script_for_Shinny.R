@@ -8,7 +8,7 @@ Mad.busi.filter_below30 <- read.csv("Mad.busi.filter_below30.csv")
 Mad_Negative_Customer_Suggestion_Ref <- read.csv("Mad_Negative_Customer_Suggestion_Ref.csv")
 Mad_Positive_Customer_Suggestion_Ref <- read.csv("Mad_Positive_Customer_Suggestion_Ref.csv")
 
-#Pittsburg
+#Pittsburgh
 Pitt.busi <- read.csv("Pitt.busi.csv")
 Pitt.busi.filter30 <- read.csv("Pitt.busi.filter30.csv")
 Pitt.busi.filter_below30 <- read.csv("Pitt.busi.filter_below30.csv")
@@ -690,7 +690,7 @@ business_sug_function <- function(ID, city = "Madison"){
     busi_words_list <- colnames(Phoen.busi.filter30)[4:54]
     busi_words_list[c(9,10,14,16,19)] <- c("cheese food","sandwich","bacon food","fried food","dipping source")
     if(Phoen.busi[which(Phoen.busi$business_id == ID),3] >= 30){
-      features <- Char.busi.filter30[which(Phoen.busi.filter30$business_id == ID),]
+      features <- Phoen.busi.filter30[which(Phoen.busi.filter30$business_id == ID),]
       temp <- paste("Our suggestion is based on ",features[1,3]," reviews ",sep = "")
       sug <- c(sug,temp)
       ##Foods
@@ -800,7 +800,7 @@ business_sug_function <- function(ID, city = "Madison"){
       }
     }
     if(Phoen.busi[which(Phoen.busi$business_id == ID),3] < 30){
-      features <- Char.busi.filter_below30[which(Phoen.busi.filter_below30$business_id == ID),]
+      features <- Phoen.busi.filter_below30[which(Phoen.busi.filter_below30$business_id == ID),]
       temp <- paste("Our suggestion is based on ",features[1,3]," reviews. Please keep in mind due to the limited number of reviews, our suggestion might not be so accurate.",sep = "")
       sug <- c(sug,temp)
       ##Foods
