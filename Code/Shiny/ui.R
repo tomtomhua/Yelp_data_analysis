@@ -7,13 +7,13 @@ library(shiny)
 library(shinythemes)
 
 ui <- navbarPage("YELP", id="nav",
+                 
                  #1. Map               
                  tabPanel("Map",
                           div(class="outer",
                               tags$head(
                                 # Include our custom CSS
                                 includeCSS("styles.css")
-                                #includeScript("gomap.js")
                               ),
                               
                               leafletOutput("yelp", width="100%", height="100%"),
@@ -29,6 +29,8 @@ ui <- navbarPage("YELP", id="nav",
                                             
                                             selectInput("cityname", "City", city_name ),
                                             
+                                            # plotOutput('plot2'),
+                                            
                                             
                                             helpText("Contact us: tsai45@wisc.edu")
                                             )
@@ -38,12 +40,21 @@ ui <- navbarPage("YELP", id="nav",
                  
                  #2. Plot
                  tabPanel(
-                   "Plot", plotOutput('plot1')
+                   "Stars Distribution", plotOutput('plot1')
                  ),
                  
-                 #3. Plot
+                 #3. Customer Suggestion
+                 
                  tabPanel(
-                   "Table", tableOutput('table1')
+                   "Customer Suggestion", tableOutput('text1')
+                   #"Suggestion", htmlOutput('text1')
+                 ),
+                 
+                 # 4. Business Suggestion
+                 tabPanel(
+                   "Business Suggestion", tableOutput('text2')
+                   #"Suggestion", htmlOutput('text1')
                  )
                  
 )
+
